@@ -32,17 +32,33 @@ public class FormActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 name = nameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
                 Cpassword = conformPasswordInput.getText().toString();
-                showTest(name);
-                showTest(email);
+
+                if (name.isEmpty() ) {
+                    Toast.makeText(FormActivity.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+                } else if (email.isEmpty()){
+                    Toast.makeText(FormActivity.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+            } else if( password.isEmpty()){
+                    Toast.makeText(FormActivity.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+                } else if ( Cpassword.isEmpty()){
+                    Toast.makeText(FormActivity.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+                }else{
+                    if(password.contentEquals(Cpassword)) {
+                        showTest(name);
+                    }else{
+                        Toast.makeText(FormActivity.this, "Error: Password does not match", Toast.LENGTH_LONG).show();
+                    }
+                }
+
             }
         });
 
     }
     private void showTest(String text){
-        Toast.makeText(FormActivity.this,text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(FormActivity.this,"Welcome, " + text + ", to the SignUpForm App",Toast.LENGTH_LONG).show();
     }
 }
